@@ -18,9 +18,8 @@ namespace Test1
     {
         // Get some file names
         const string sng_folder = @"C:\Users\Asus\Desktop\test\";
-        string[] files = [];                           
-        //string final_path_inputed = "";
-        //string yangi_Document_ismi = "";
+        string[] files = [];
+        string new_name_of_file = "";
         string final_path = "";
 
         public MainWindow()
@@ -40,6 +39,7 @@ namespace Test1
                 string path_of_file = fileDialog.FileName;
                 string content_of_file = File.ReadAllText(path_of_file);
                 files = Directory.GetFiles(System.IO.Path.Combine(sng_folder, content_of_file)); // taking files path
+                new_name_of_file = content_of_file;
 
                 tbInfo.Text = content_of_file;
             }
@@ -54,6 +54,7 @@ namespace Test1
             
             // Open the output document
             PdfDocument yangi_Document = new PdfDocument();
+            
 
             // Iterate files
             foreach (string file in files)
@@ -76,8 +77,9 @@ namespace Test1
 
             yangi_Document.Options.CompressContentStreams = true;
             yangi_Document.Options.NoCompression = false;
-            final_path = @"C:\Users\Asus\Desktop\test\12345.pdf";                 //final_path_inputed + "\\" + yangi_Document_ismi;   // Fullname of new pdf file
-            yangi_Document.Save(final_path);                                      // Final path for save
+            //string pdfextension = $".pdf";
+            final_path = string.Concat(System.IO.Path.Combine(sng_folder),new_name_of_file,".pdf");                 // Fullname of new pdf file
+            yangi_Document.Save(final_path);                                                                // Final path for save
 
             //Process.Start(final_path);
         }

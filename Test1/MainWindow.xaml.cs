@@ -73,6 +73,7 @@ namespace Test1
 
             }
 
+
             yangi_Document.Options.CompressContentStreams = true;
             yangi_Document.Options.NoCompression = false;
             final_path = @"C:\Users\Asus\Desktop\test\12345.pdf";                 //final_path_inputed + "\\" + yangi_Document_ismi;   // Fullname of new pdf file

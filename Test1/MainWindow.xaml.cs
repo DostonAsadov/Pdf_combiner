@@ -18,6 +18,7 @@ namespace Test1
     {
         // Get some file names
         const string sng_folder = @"C:\Users\Asus\Desktop\test\";
+        string[] selected_folders = [];
         string[] files = [];
         string new_name_of_file = "";
         string final_path = "";
@@ -29,19 +30,20 @@ namespace Test1
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Multiselect = true;
+            OpenFileDialog inserted_text_file = new OpenFileDialog();
+            inserted_text_file.Multiselect = true;
 
-            bool? success = fileDialog.ShowDialog();
+            bool? success = inserted_text_file.ShowDialog();
             if (success == true)
             {
              
-                string path_of_file = fileDialog.FileName;
-                string content_of_file = File.ReadAllText(path_of_file);
-                files = Directory.GetFiles(System.IO.Path.Combine(sng_folder, content_of_file)); // taking files path
-                new_name_of_file = content_of_file;
+                string path_of_file = inserted_text_file.FileName;  //Text fileni tuliq yulini olyapman
+                string content_of_file = File.ReadAllText(path_of_file); //Faylni tuliq yulidan foydalanib, uni ichidagi malumotlarni uqiyapmiz
+                //files = Directory.GetFiles(System.IO.Path.Combine(sng_folder, content_of_file)); //SNG+Odamni ismi=odamni pdflari turgan papkani yuli(papka,fayl emas)
+                //new_name_of_file = content_of_file; //text fayldagi yozildan malumotlar.
+                selected_folders = File.ReadAllLines(path_of_file);  //txt dagi arrayni oldik
 
-                tbInfo.Text = content_of_file;
+                tbInfo.Text = "Ruyhat olindi";      //textbox da contentni chiqarish
             }
             else
             {
@@ -49,39 +51,37 @@ namespace Test1
             }
         }
 
+     
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            // Open the output document
-            PdfDocument yangi_Document = new PdfDocument();
-            
-
-            // Iterate files
-            foreach (string file in files)
+            foreach (string  name_of_people in selected_folders)
             {
-                // Open the document to import pages from it.
-                PdfDocument input_Document = PdfReader.Open(file, PdfDocumentOpenMode.Import);
+                string folder_of_people = name_of_people;
+                
+                files = Directory.GetFiles(System.IO.Path.Combine(sng_folder, folder_of_people));
 
-                // Iterate pages
-                int count = input_Document.PageCount;
-                for (int i = 0; i < count; i++)
+                PdfDocument yangi_Document = new PdfDocument();     // Open the output document
+
+                foreach (string file in files)                      // Iterate files
                 {
-                    // Get the page from the external document...
-                    PdfPage page = input_Document.Pages[i];
-                    // ...and add it to the output document.
-                    yangi_Document.AddPage(page);
+                    PdfDocument input_Document = PdfReader.Open(file, PdfDocumentOpenMode.Import);    // Open the document to import pages from it.
+
+                    int count = input_Document.PageCount;           // Iterate pages
+                    for (int i = 0; i < count; i++)
+                    {
+                        PdfPage page = input_Document.Pages[i];     // Get the page from the external document...
+                        yangi_Document.AddPage(page);               // ...and add it to the output document.
+                    }
+
                 }
 
+                final_path = string.Concat(System.IO.Path.Combine(sng_folder), name_of_people, ".pdf");                 // Fullname of new pdf file
+
+                yangi_Document.Options.CompressContentStreams = true;
+                yangi_Document.Options.NoCompression = false;
+                yangi_Document.Save(final_path);                                                                // Final path for save
+                //Process.Start(final_path);                                                                    //srazu pdf ochib ketadi.
             }
-
-
-            yangi_Document.Options.CompressContentStreams = true;
-            yangi_Document.Options.NoCompression = false;
-            //string pdfextension = $".pdf";
-            final_path = string.Concat(System.IO.Path.Combine(sng_folder),new_name_of_file,".pdf");                 // Fullname of new pdf file
-            yangi_Document.Save(final_path);                                                                // Final path for save
-
-            //Process.Start(final_path);
         }
     }
 }

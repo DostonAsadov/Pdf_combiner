@@ -23,11 +23,13 @@
         <Button Grid.Row="0" Grid.Column="1" x:Name="StartButton" Content="Start" Width="100px" Height="30"
                 Click="StartButton_Click" HorizontalAlignment="Center" Margin="0,0,0,0"/>
 
-        <TextBlock Grid.Row="1" Name="tbInfo" FontSize="16"
-                   VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,20,0" />
+        <TextBlock Grid.Row="1" Name="tbInfo" FontSize="20"
+                   VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,0,20,0" />
 
-        <TextBox Grid.Row="2" Grid.Column="2" x:Name="destination_Path" FontSize="16"
-                   VerticalAlignment="Center"  HorizontalAlignment="Left" Width="200px" Height="50" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="destination_Path" FontSize="16"
+                   VerticalAlignment="Bottom"  HorizontalAlignment="Center" Width="240" Height="68" Margin="0,55,0,0" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="location_of_folders" FontSize="16"
+            VerticalAlignment="Top"  HorizontalAlignment="Center" Width="240" Height="68" Margin="0,0,0,0" />
 
     </Grid>
 </Window>

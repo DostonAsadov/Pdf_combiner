@@ -1,12 +1,9 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Win32;
+
 
 
 namespace Test1
@@ -17,7 +14,7 @@ namespace Test1
     public partial class MainWindow : Window
     {
         // Get some file names
-        const string sng_folder = @"C:\Users\Asus\Desktop\test\";
+        string sng_folder = "";
         string desdination_of_Combined_pdfs = "";
         string[] selected_folders = [];
         string[] files = [];
@@ -34,6 +31,7 @@ namespace Test1
             OpenFileDialog inserted_text_file = new OpenFileDialog();
             inserted_text_file.Multiselect = true;
 
+            
             bool? success = inserted_text_file.ShowDialog();
             if (success == true)
             {
@@ -58,7 +56,10 @@ namespace Test1
             foreach (string  name_of_people in selected_folders)
             {
                 string folder_of_people = name_of_people;
-                
+
+                string path_from_user = Path.Combine(location_of_folders.Text);
+                sng_folder = path_from_user;
+
                 files = Directory.GetFiles(System.IO.Path.Combine(sng_folder, folder_of_people));
                 desdination_of_Combined_pdfs = destination_Path.Text;
 
@@ -85,7 +86,7 @@ namespace Test1
                 //Process.Start(final_path);                                                                    //srazu pdf ochib ketadi.
             }
 
-            tbInfo.Text = final_path.ToString();
+            tbInfo.Text = "PDFlarni to'plab bo'ldim";
         }
     }
 }

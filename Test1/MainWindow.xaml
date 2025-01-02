@@ -26,7 +26,7 @@
         <TextBlock Grid.Row="1" Name="tbInfo" FontSize="16"
                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,20,0" />
 
-        <TextBox Grid.Row="2" Grid.Column="2" x:Name="final_Path" FontSize="16"
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="destination_Path" FontSize="16"
                    VerticalAlignment="Center"  HorizontalAlignment="Left" Width="200px" Height="50" />
 
     </Grid>

@@ -18,6 +18,7 @@ namespace Test1
     {
         // Get some file names
         const string sng_folder = @"C:\Users\Asus\Desktop\test\";
+        string desdination_of_Combined_pdfs = "";
         string[] selected_folders = [];
         string[] files = [];
         string new_name_of_file = "";
@@ -59,6 +60,7 @@ namespace Test1
                 string folder_of_people = name_of_people;
                 
                 files = Directory.GetFiles(System.IO.Path.Combine(sng_folder, folder_of_people));
+                desdination_of_Combined_pdfs = destination_Path.Text;
 
                 PdfDocument yangi_Document = new PdfDocument();     // Open the output document
 
@@ -74,14 +76,16 @@ namespace Test1
                     }
 
                 }
-
-                final_path = string.Concat(System.IO.Path.Combine(sng_folder), name_of_people, ".pdf");                 // Fullname of new pdf file
+                
+                final_path = string.Concat(System.IO.Path.Combine(desdination_of_Combined_pdfs), "\\",name_of_people, ".pdf");                 // Fullname of new pdf file
 
                 yangi_Document.Options.CompressContentStreams = true;
                 yangi_Document.Options.NoCompression = false;
                 yangi_Document.Save(final_path);                                                                // Final path for save
                 //Process.Start(final_path);                                                                    //srazu pdf ochib ketadi.
             }
+
+            tbInfo.Text = final_path.ToString();
         }
     }
 }

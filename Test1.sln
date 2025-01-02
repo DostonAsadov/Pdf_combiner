@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35507.96 d17.13
+VisualStudioVersion = 17.13.35507.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test1", "Test1\Test1.csproj", "{9D862FDF-CA5E-4BA2-81BF-645DC4E27B7A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PDFtoplovchi", "PDFtoplovchi\PDFtoplovchi.vdproj", "{28091BE7-E1EE-3525-3A15-38AECD5BD78A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{9D862FDF-CA5E-4BA2-81BF-645DC4E27B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D862FDF-CA5E-4BA2-81BF-645DC4E27B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D862FDF-CA5E-4BA2-81BF-645DC4E27B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28091BE7-E1EE-3525-3A15-38AECD5BD78A}.Debug|Any CPU.ActiveCfg = Debug
+		{28091BE7-E1EE-3525-3A15-38AECD5BD78A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
